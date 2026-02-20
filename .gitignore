@@ -1,0 +1,11 @@
+# Ignore sensitive or temporary files
+*.log
+*.tmp
+.DS_Store
+
+# Backup files created by enhance script
+*.original.*
+
+# Local test skills (don't commit these)
+test-*/
+my-*/

@@ -1,6 +1,6 @@
 # Framework Patterns for Skill Building
 
-Reference guide for building skills that target React/Next.js.
+Reference guide for building skills with modern React frameworks.
 
 ---
 
@@ -29,74 +29,189 @@ skill-name/
 └── index.ts              # Public API exports
 ```
 
-### Key Files to Include
+### Key Files
 
 | File | Purpose |
 |------|---------|
-| `skill-client.ts` | Typed client for external API |
-| `use-skill.ts` | React hook for skill state/logic |
-| `schema.ts` | Zod validation schemas |
-| `types.ts` | Shared TypeScript interfaces |
-| `actions.ts` | Next.js Server Actions (optional) |
+| `skill-client.ts` | Typed API client |
+| `use-skill.ts` | React hook for skill logic |
+| `schema.ts` | Zod validation |
+| `actions.ts` | Next.js Server Actions |
 
 ### Common Pitfalls
 
-- **Hydration Mismatch**: Always use `useEffect` for client-only data
-  ```tsx
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
-  if (!mounted) return null;
-  ```
-
-- **Server vs Client Components**: Mark client components with `'use client'`
-  - Default: Server Component
-  - Need hooks/interactivity: Add `'use client'`
-  - Fetching data: Server Component (preferred)
-
-- **Async Server Actions**: Must be async functions, not arrow functions in some cases
-  ```ts
-  // ✅ Correct
-  export async function myAction() { }
-  
-  // ❌ Avoid
-  export const myAction = async () => { }
-  ```
-
-### Best Practices
-
-1. **Use React Query/TanStack Query** for server state management
-2. **Zod for validation** on both client and server
-3. **Co-locate related files** (component + test + styles)
-4. **Prefer Server Components** for data fetching
-5. **Use ` Suspense` boundaries** for loading states
-6. **Export named hooks** not just components
+- **Hydration mismatch**: Use `useEffect` for client-only data
+- **Server vs Client**: Mark interactive components with `'use client'`
+- **Server Actions**: Use `async function`, not arrow functions
 
 ---
 
-## Cross-Framework Guidelines
+## Astro
 
-### Skill Configuration Pattern
+### Directory Structure
 
-All skills should accept a configuration object:
-
-```ts
-interface SkillConfig {
-  apiKey?: string;
-  baseUrl?: string;
-  timeout?: number;
-  debug?: boolean;
-}
-
-// Validation
-const configSchema = z.object({
-  apiKey: z.string().optional(),
-  baseUrl: z.string().url().default('https://api.example.com'),
-  timeout: z.number().min(1000).default(30000),
-  debug: z.boolean().default(false),
-});
+```
+skill-name/
+├── src/
+│   ├── components/
+│   │   ├── SkillWidget.astro
+│   │   └── SkillCard.astro
+│   ├── lib/
+│   │   ├── skill-client.ts
+│   │   └── types.ts
+│   ├── pages/
+│   │   └── api/
+│   │       └── skill.ts
+│   └── layouts/
+│       └── SkillLayout.astro
+├── actions/
+│   └── index.ts          # Astro Actions
+└── config.ts
 ```
 
-### Error Handling Pattern
+### Key Concepts
+
+- **Zero-JS by default**: Only hydrate what needs interactivity
+- **Client directives**: `client:load`, `client:visible`, `client:media`
+- **Astro Actions**: For form submissions and mutations
+- **Content Collections**: For structured YAML/JSON/Markdown
+
+### When to Use
+
+- Content-heavy sites
+- Marketing pages
+- Documentation
+- Blogs
+
+---
+
+## TanStack Start
+
+### Directory Structure
+
+```
+skill-name/
+├── app/
+│   ├── routes/
+│   │   ├── __root.tsx
+│   │   ├── index.tsx
+│   │   └── skill/
+│   │       └── index.tsx
+│   ├── hooks/
+│   │   └── use-skill.ts
+│   ├── lib/
+│   │   ├── skill-client.ts
+│   │   └── server/
+│   │       └── skill-actions.ts
+│   └── api.ts              # API routes
+├── server/
+│   └── functions/
+│       └── skill-api.ts
+└── app.config.ts
+```
+
+### Key Concepts
+
+- **File-based routing**: Like Next.js but framework-agnostic
+- **Server Functions**: Run server code from client components
+- **TanStack Query**: Built-in data fetching
+- **Vinxi**: Unified dev server
+
+### When to Use
+
+- Full-stack React without framework lock-in
+- Want React Router + TanStack Query together
+- Future-proof architecture
+
+---
+
+## React Router v7
+
+### Directory Structure
+
+```
+skill-name/
+├── app/
+│   ├── root.tsx
+│   ├── routes.ts           # Route config
+│   └── routes/
+│       ├── _index.tsx
+│       ├── skill/
+│       │   ├── _layout.tsx
+│       │   └── index.tsx
+│       └── api.skill.ts    # Resource route
+├── app/hooks/
+│   └── use-skill.ts
+├── app/lib/
+│   └── skill-client.ts
+└── react-router.config.ts
+```
+
+### Key Concepts
+
+- **Declarative routes**: Define in `routes.ts`
+- **Resource routes**: API endpoints without UI
+- **Layout routes**: Nested layouts with `_layout.tsx`
+- **Client-side navigation**: SPA feel, SSR benefits
+
+### When to Use
+
+- Migrating from React Router v6
+- Want control over routing without framework overhead
+- Building SPAs with SSR
+
+---
+
+## Remix v3
+
+### Directory Structure
+
+```
+skill-name/
+├── app/
+│   ├── root.tsx
+│   ├── routes/
+│   │   ├── _index.tsx
+│   │   ├── skill.tsx        # Parent route
+│   │   └── skill._index.tsx # Child route
+│   ├── hooks/
+│   │   └── use-skill.ts
+│   └── lib/
+│       └── skill-client.ts
+├── app/routes/api.skill.ts   # Resource route
+└── vite.config.ts
+```
+
+### Key Concepts
+
+- **Nested routing**: File structure = URL structure
+- **Loaders**: Server data for routes
+- **Actions**: Form submissions handled server-side
+- **Forms**: Progressive enhancement built-in
+
+### When to Use
+
+- Full-stack web apps
+- Forms-heavy applications
+- Want automatic handling of mutations
+
+---
+
+## Quick Comparison
+
+| Framework | Best For | Learning Curve | Bundle Size |
+|-----------|----------|----------------|-------------|
+| **Next.js** | Production apps, SEO | Medium | Larger |
+| **Astro** | Content sites, speed | Low | Smallest |
+| **TanStack Start** | Future-proof React | Medium | Medium |
+| **React Router v7** | SPAs, migrations | Low | Medium |
+| **Remix v3** | Full-stack, forms | Medium | Medium |
+
+---
+
+## Shared Best Practices
+
+### Error Handling
 
 ```ts
 class SkillError extends Error {
@@ -109,15 +224,30 @@ class SkillError extends Error {
     this.name = 'SkillError';
   }
 }
+```
 
-// Usage
-throw new SkillError('API request failed', 'API_ERROR', { status: 500 });
+### Config Pattern
+
+```ts
+interface SkillConfig {
+  apiKey?: string;
+  baseUrl?: string;
+  timeout?: number;
+  debug?: boolean;
+}
+
+const configSchema = z.object({
+  apiKey: z.string().optional(),
+  baseUrl: z.string().url().default('https://api.example.com'),
+  timeout: z.number().min(1000).default(30000),
+  debug: z.boolean().default(false),
+});
 ```
 
 ### Export Convention
 
 ```ts
-// index.ts - Public API
+// index.ts
 export { SkillClient } from './skill-client';
 export { useSkill } from './hooks/use-skill';
 export type { SkillConfig, SkillResult } from './types';

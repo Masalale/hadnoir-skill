@@ -1,10 +1,10 @@
 # Framework Patterns for Skill Building
 
-Reference guide for building skills that target React and Next.js.
+Reference guide for building skills that target React/Next.js.
 
 ---
 
-## React / Next.js
+## React/Next.js
 
 ### Recommended Directory Structure
 

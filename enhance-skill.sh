@@ -145,7 +145,7 @@ backup_original() {
 enhance_skill_md() {
     local skill_name="$1"
     local skill_path="$2"
-    local template_file="${TEMPLATES_DIR}/SKILL.md.enhanced"
+    local template_file="${TEMPLATES_DIR}/SKILL.md"
     
     print_info "Enhancing SKILL.md..."
     

@@ -1,4 +1,4 @@
-# 🔧 Hadnoir Skill Enhancer
+# 🔧 Skill Enhancer
 
 An OpenClaw agent skill that elevates skills created with `skill-creator` to production quality.
 
@@ -10,7 +10,7 @@ An OpenClaw agent skill that elevates skills created with `skill-creator` to pro
 **This skill does NOT create skills from scratch.** It enhances skills after they've been created with `skill-creator`.
 
 ```
-skill-creator (scaffolds) → hadnoir-skill (enhances) → Production-ready skill
+skill-creator (scaffolds) → skill-enhancer (enhances) → Production-ready skill
 ```
 
 ## What This Skill Does
@@ -28,7 +28,7 @@ Transforms basic skills into well-structured, discoverable production skills.
 
 ```bash
 # Clone to your OpenClaw skills directory
-git clone https://github.com/masalale/hadnoir-skill.git ~/.openclaw/skills/hadnoir-skill
+git clone https://github.com/masalale/skill-enhancer.git ~/.openclaw/skills/skill-enhancer
 ```
 
 ## Usage
@@ -47,7 +47,7 @@ Then say any of these to enhance it:
 
 ## What It Enhances
 
-| Before (skill-creator) | After (hadnoir-skill) |
+| Before (skill-creator) | After (skill-enhancer) |
 |------------------------|----------------------|
 | Weak description | "Use when..." triggers |
 | 600-line SKILL.md | 180 lines + references/ |

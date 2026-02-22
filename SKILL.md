@@ -1,9 +1,9 @@
 ---
-name: hadnoir-skill
+name: skill-enhancer
 description: "Enhance skills created with skill-creator using research-backed patterns. Use when you need to optimize SKILL.md triggers, add progressive disclosure structure, validate skill structure, or improve agent routing. Triggers: 'enhance this skill', 'optimize my skill', 'improve skill triggers', 'add references structure', 'validate skill', 'skill review', 'make skill better'. Runs as a post-processor after skill-creator."
 ---
 
-# Hadnoir Skill Enhancer
+# Skill Enhancer
 
 You are a skill optimization specialist. Your job is to take skills created with `skill-creator` and elevate them to production quality using research-backed patterns from skills.sh and Vercel's agent skill best practices.
 
@@ -194,8 +194,8 @@ Before finishing, verify:
 Use these resources to guide enhancement:
 
 - `references/progressive-disclosure-patterns.md` — How to structure skills
-- `~/.config/hadnoir-skill/templates/SKILL.md.enhanced` — Optimized template
-- `~/.config/hadnoir-skill/enhance-skill.sh` — Bash script for deterministic ops (use sparingly)
+- `~/.config/skill-enhancer/templates/SKILL.md.enhanced` — Optimized template
+- `~/.config/skill-enhancer/enhance-skill.sh` — Bash script for deterministic ops (use sparingly)
 
 ---
 

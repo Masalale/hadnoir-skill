@@ -7,14 +7,13 @@ Personal skill enhancement toolkit based on research into progressive disclosure
 A post-processing enhancer for skills created with OpenClaw's `skill-creator`. Applies research-backed patterns for:
 - Trigger-optimized SKILL.md frontmatter
 - Progressive disclosure structure
-- Framework-specific references
 - Validation checks
 
 ## Installation
 
 ```bash
 # Clone to your config directory
-git clone https://github.com/YOUR_USERNAME/hadnoir-skill.git ~/.config/hadnoir-skill
+git clone https://github.com/masalale/hadnoir-skill.git ~/.config/hadnoir-skill
 ```
 
 ## Usage
@@ -34,7 +33,6 @@ clawhub run skill-creator my-skill
 | **Trigger Optimization** | SKILL.md with "Use when..." patterns |
 | **Size Validation** | Ensures SKILL.md <500 lines |
 | **Progressive Disclosure** | Proper references/ structure |
-| **Framework Guides** | React, Astro, Svelte, Vanilla JS patterns |
 | **Starter Templates** | Pre-built reference files |
 
 ## Structure
@@ -45,8 +43,7 @@ clawhub run skill-creator my-skill
 ├── templates/
 │   └── SKILL.md.enhanced         # Optimized template
 └── references/
-    ├── progressive-disclosure-patterns.md
-    └── framework-patterns.md
+    └── progressive-disclosure-patterns.md
 ```
 
 ## References

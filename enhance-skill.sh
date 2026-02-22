@@ -53,7 +53,6 @@ show_usage() {
     echo "Enhances a skill created by skill-creator with:"
     echo "  • Optimized SKILL.md with proper triggers"
     echo "  • Progressive disclosure structure"
-    echo "  • Framework-specific references"
     echo "  • Validation checks"
     echo ""
     echo "Example:"
@@ -222,11 +221,6 @@ EOF
 - `ENV_VAR_2`: Description
 EOF
 
-    # Copy framework patterns reference if it doesn't exist
-    if [[ ! -f "${skill_path}/references/framework-patterns.md" ]]; then
-        cp "${REFERENCES_DIR}/framework-patterns.md" "${skill_path}/references/" 2>/dev/null || true
-    fi
-    
     print_success "Created references/ directory with starter files"
 }
 
@@ -245,8 +239,8 @@ This directory contains files used in skill output (not loaded into context).
 
 ## Structure
 
-- `templates/` - Reusable templates (HTML, React, Astro, etc.)
-- `components/` - Framework-specific components
+- `templates/` - Reusable templates
+- `components/` - Reusable components
 - `styles/` - CSS, theme files
 
 ## Usage
@@ -335,7 +329,6 @@ main() {
     echo ""
     echo "  2. Customize references/ files"
     echo "     - Add domain-specific documentation"
-    echo "     - Include framework patterns if applicable"
     echo ""
     echo "  3. Add assets/ as needed"
     echo "     - Templates, components, styles"
@@ -344,7 +337,6 @@ main() {
     echo ""
     echo -e "${BLUE}For help, see:${NC}"
     echo "  ${REFERENCES_DIR}/progressive-disclosure-patterns.md"
-    echo "  ${REFERENCES_DIR}/framework-patterns.md"
 }
 
 # Run main if executed directly
